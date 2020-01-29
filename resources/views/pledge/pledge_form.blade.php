@@ -15,9 +15,10 @@
                                 <label for="email" class="col-md-4 col-form-label text-md-right">Наименование имущества</label>
                                 <div class="col-md-6">
                                     <select class="form-control" multiple >
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        @foreach($realestateassets as $realestateasset)
+                                        <option> - </option>
+                                        <option>{{ $realestateasset->name, $realestateasset->inventory_number }}</option>
+                                        @endforeach
                                     </select>
 
                                 </div>
