@@ -13,18 +13,30 @@
                             <Propertyselect realestateassets="{{$realestateassets}}"></Propertyselect>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Наименование
+                                <label for="bank_name" class="col-md-4 col-form-label text-md-right">Наименование
                                     банка</label>
                                 <div class="col-md-6">
-                                    <input id="bank_name" type="text" class="form-control" name="bank_name"
+                                    <input id="bank_name" type="text" class="form-control" name="bank_name" id="bank_name"
                                            value="{{ old('bank_name') }}" required>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">Номер договора</label>
+                                <label for="contract" class="col-md-4 col-form-label text-md-right">Номер договора</label>
                                 <div class="col-md-6">
-                                    <input id="contract" type="text" class="form-control" name="contract"
+                                    <input id="contract" type="text" class="form-control" name="contract" id="contract"
                                            value="{{ old('contract') }}" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="date-input-start" class="col-md-4 col-form-label text-md-right">Начало залога</label>
+                                <div class="col-md-6">
+                                    <input class="form-control"name="date_start" type="date" value="" id="date-input-start">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="date-input-end" class="col-md-4 col-form-label text-md-right">Окончание залога</label>
+                                <div class="col-md-6">
+                                    <input class="form-control" name="date_end" type="date" value="" id="date-input-end">
                                 </div>
                             </div>
                             {{--<div class="form-group row">
