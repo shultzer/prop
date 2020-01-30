@@ -14,6 +14,8 @@
 
 Route::get('/pledgeform', 'PledgeController@create');
 Route::get('/', 'PledgeController@index');
+Route::get('/searchform', 'UserController@searchform');
+Route::post('/search', 'UserController@search');
 
 Auth::routes();
 
