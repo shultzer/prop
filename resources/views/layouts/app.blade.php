@@ -39,16 +39,7 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/searchform" role="button">
-                            Поиск<span class="caret"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/pledgeform" role="button">
-                            Новый залог<span class="caret"></span>
-                        </a>
-                    </li>
+
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">

@@ -18,6 +18,10 @@ class UserController extends Controller
         //$this->middleware('auth');
     }
 
+    public function index (  ) {
+        return view('user.index');
+    }
+
 
     public function searchform () {
 
@@ -32,7 +36,7 @@ class UserController extends Controller
                 $query->where('inventory_number', $inventory_number)->get();
             },
         ])->get();
-        $assets_under_pledge = Realestateasset::has('pledgeholder')->with('pledgeholder')->get();
+        $assets_under_pledge = Realestateasset::has('pledgeholder')->with('pledgeholder')->where('inventory_number', $inventory_number)->get();
 
         //dd($assets_under_pledge->pluck('name','inventory_number'));
         return view('user.searchresult', compact('assets_under_pledge'));
