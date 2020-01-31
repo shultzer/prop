@@ -17,7 +17,7 @@ class CreatePledgeHoldersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('realestateasset_id');
             $table->foreign('realestateasset_id')->references('id')->on('realestateassets');
-            $table->string('bank_name');
+            $table->string('name');
             $table->string('start_period');
             $table->string('end_period');
             $table->string('contract');
