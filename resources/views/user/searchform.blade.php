@@ -6,12 +6,15 @@
             <div class="form-group row">
                 @csrf
                 <div class="col-4">
-                    <input class="form-control" name="inventory_number" placeholder="Инвентарный номер по ЕГРНИ"/>
+                    <input class="form-control" id="invnumber" name="inventory_number" placeholder="Инвентарный номер по ЕГРНИ"/>
                 </div>
                 <div class="col-8">
-                    <button>Поиск</button>
+                    <button class="btn btn-info">Поиск</button>
                 </div>
             </div>
         </form>
     </div>
+
 @endsection
+
+
