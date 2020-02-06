@@ -40,18 +40,11 @@ class PledgeholderPolicy
      * @return mixed
      */
     public function before (?User $user) {
-        //dd($user->role->name);
-        if ($user){
-            return $user->role->name== 'admin';
-        }
-        return false;
-
-
     }
 
     public function create (?User $user) {
-        if ($user) {
-            return $user->role->name == 'stuff';
+        if ($user){
+            return in_array($user->role->name, ['admin','staff']);
         }
         return false;
     }

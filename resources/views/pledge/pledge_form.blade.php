@@ -30,13 +30,13 @@
                             <div class="form-group row">
                                 <label for="date-input-start" class="col-md-4 col-form-label text-md-right">Начало залога</label>
                                 <div class="col-md-6">
-                                    <input class="form-control"name="start_period" type="date" value="" id="date-input-start">
+                                    <input required class="form-control"name="start_period" type="date" value="" id="date-input-start">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="date-input-end" class="col-md-4 col-form-label text-md-right">Окончание залога</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="end_period" type="date" value="" id="date-input-end">
+                                    <input required class="form-control" name="end_period" type="date" value="" id="date-input-end">
                                 </div>
                             </div>
                             {{--<div class="form-group row">

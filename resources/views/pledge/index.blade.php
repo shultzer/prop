@@ -13,10 +13,14 @@
                 </div>
             @endif
         <div class="row justify-content-center">
-            <a href="/searchform" class="btn btn-primary" role="button">Поиск</a>
-            @can('create', App\Models\Pledgeholder::class)
-                <a href="/pledgeform" class="btn btn-primary btn-lg margin-x-md" role="button">Добавить залог</a>
-            @endcan
+            <div class="col-3"><a href="/searchform" class="btn btn-primary" role="button">Поиск</a></div>
+            <div class="col-3">
+                @can('create', App\Models\Pledgeholder::class)
+                    <a href="/pledgeform" class="btn btn-primary btn-lg margin-x-md" role="button">Добавить залог</a>
+                @endcan
+            </div>
+
+
         </div>
     </div>
 @endsection

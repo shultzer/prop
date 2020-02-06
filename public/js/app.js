@@ -2007,6 +2007,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Propertyselect",
   created: function created() {
@@ -2021,7 +2030,8 @@ __webpack_require__.r(__webpack_exports__);
       company: '',
       raion: '',
       oblast: '',
-      address: ''
+      address: '',
+      errors: {}
     };
   },
   methods: {
@@ -2038,8 +2048,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.get('/assets').then(function (response) {
-        _this2.realestateassets = response.data;
-        console.log(response.data);
+        _this2.realestateassets = response.data; //console.log(response.data)
       })["catch"](function (error) {
         console.log(error.response);
       });
@@ -2055,9 +2064,14 @@ __webpack_require__.r(__webpack_exports__);
         oblast: this.oblast,
         address: this.address
       }).then(function (response) {
-        _this3.getassets(), $('#addModal').modal('hide'), console.log(response);
+        _this3.getassets();
+
+        $('#addModal').modal('hide');
+        document.getElementById("myform").reset();
+        console.log(response.data.errors);
       })["catch"](function (error) {
-        console.log(error.response);
+        _this3.errors = error.response.data.errors;
+        console.log(error.response.data.errors);
       });
     }
   }
@@ -37541,11 +37555,17 @@ var render = function() {
               _vm._m(0),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
-                _c("form", [
+                _c("form", { attrs: { id: "myform" } }, [
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "Inputname" } }, [
                       _vm._v("Наименование имущества")
                     ]),
+                    _vm._v(" "),
+                    this.errors.name
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.name[0]))
+                        ])
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -37558,6 +37578,7 @@ var render = function() {
                       ],
                       staticClass: "form-control form-control-sm",
                       attrs: {
+                        required: "",
                         id: "Inputname",
                         type: "text",
                         placeholder: "Наименование имущества"
@@ -37588,6 +37609,12 @@ var render = function() {
                       _vm._v("Инвентарный номер по ЕГРНИ")
                     ]),
                     _vm._v(" "),
+                    this.errors.number
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.number[0]))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -37598,7 +37625,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control form-control-sm",
-                      attrs: { id: "Inputnumber", type: "text" },
+                      attrs: { required: "", id: "Inputnumber", type: "text" },
                       domProps: { value: _vm.number },
                       on: {
                         input: function($event) {
@@ -37625,6 +37652,12 @@ var render = function() {
                       _vm._v("Область")
                     ]),
                     _vm._v(" "),
+                    this.errors.oblast
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.oblast[0]))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -37635,7 +37668,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control form-control-sm",
-                      attrs: { id: "Inputoblast", type: "text" },
+                      attrs: { required: "", id: "Inputoblast", type: "text" },
                       domProps: { value: _vm.oblast },
                       on: {
                         input: function($event) {
@@ -37662,6 +37695,12 @@ var render = function() {
                       _vm._v("Район")
                     ]),
                     _vm._v(" "),
+                    this.errors.raion
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.raion[0]))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -37672,7 +37711,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control form-control-sm",
-                      attrs: { id: "Inputraion", type: "text" },
+                      attrs: { required: "", id: "Inputraion", type: "text" },
                       domProps: { value: _vm.raion },
                       on: {
                         input: function($event) {
@@ -37699,6 +37738,12 @@ var render = function() {
                       _vm._v("Адрес")
                     ]),
                     _vm._v(" "),
+                    this.errors.address
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.address[0]))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -37709,7 +37754,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "form-control form-control-sm",
-                      attrs: { id: "Inputaddress", type: "text" },
+                      attrs: { required: "", id: "Inputaddress", type: "text" },
                       domProps: { value: _vm.address },
                       on: {
                         input: function($event) {
@@ -37738,6 +37783,12 @@ var render = function() {
                       [_vm._v("Балансодержатель")]
                     ),
                     _vm._v(" "),
+                    this.errors.company
+                      ? _c("label", { staticClass: "alert-danger" }, [
+                          _vm._v(_vm._s(this.errors.company[0]))
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c(
                       "select",
                       {
@@ -37750,7 +37801,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { id: "exampleFormControlSelect1" },
+                        attrs: {
+                          required: "",
+                          id: "exampleFormControlSelect1"
+                        },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter

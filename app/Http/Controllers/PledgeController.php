@@ -58,6 +58,13 @@ class PledgeController extends Controller
                 ->route('main')
                 ->with([ 'message' => 'у вас нет  прав' ]);
         }
+        $request->validate([
+            'assets' => 'required',
+            'bank_name' => 'required',
+            'contract' => 'required',
+            'start_period' => 'required',
+            'end_period' => 'required',
+        ]);
         $assets       = Realestateasset::find($request->input('assets'));
         $pledgeholder = Pledgeholder::create($request->except('_token', 'assets'));
         foreach ( $assets as $asset ) {

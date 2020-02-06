@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Realestateasset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class RealestateassetController extends Controller
 {
@@ -15,6 +17,7 @@ class RealestateassetController extends Controller
      */
     public function index () {
         $assets = Realestateasset::doesntHave('pledgeholder')->latest()->get();
+
 
         return response()->json($assets, 200);
     }
@@ -36,6 +39,16 @@ class RealestateassetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store ( Request $request ) {
+        //Gate::authorize('create', Pledgeholder::class);
+        $request->validate([
+            'name' => 'required',
+            'inventory_number' => 'required|unique:realestateassets',
+            'oblast' => 'required',
+            'raion' => 'required',
+            'address' => 'required',
+            'company' => 'required',
+
+        ]);
             $data = [
                 'name' =>$request->name,
                 'inventory_number'=>$request->inventory_number,
