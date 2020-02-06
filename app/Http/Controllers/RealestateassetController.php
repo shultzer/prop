@@ -14,7 +14,7 @@ class RealestateassetController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index () {
-        $assets = Realestateasset::doesntHave('pledgeholder')->get();
+        $assets = Realestateasset::doesntHave('pledgeholder')->latest()->get();
 
         return response()->json($assets, 200);
     }

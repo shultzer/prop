@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Pledgeholder;
-use App\User;
+use App\Models\Pledgeholder;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PledgeholderPolicy
@@ -40,22 +40,20 @@ class PledgeholderPolicy
      * @return mixed
      */
     public function before (?User $user) {
-        foreach ( optional($user->roles) as $role ) {
-            if ( $role->role == 'admin' ) {
-                return TRUE;
-            }
+        //dd($user->role->name);
+        if ($user){
+            return $user->role->name== 'admin';
         }
+        return false;
 
 
     }
 
     public function create (?User $user) {
-        foreach ( optional($user->roles) as $role ) {
-            if ( $role->role == 'staff' ) {
-                return TRUE;
-            }
+        if ($user) {
+            return $user->role->name == 'stuff';
         }
-        return FALSE;
+        return false;
     }
 
     /**

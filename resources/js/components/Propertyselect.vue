@@ -96,6 +96,7 @@
             getassets() {
                 axios.get('/assets').then(response => {
                     this.realestateassets = response.data;
+                    console.log(response.data)
                 }).catch(function (error) {
                     console.log(error.response);
                 });

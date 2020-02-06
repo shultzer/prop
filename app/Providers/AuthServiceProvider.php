@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Pledgeholder;
+use App\Policies\PledgeholderPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-         'App\Model\Pledgeholder' => 'App\Policies\PledgeholderPolicy',
+         Pledgeholder::class => PledgeholderPolicy::class,
     ];
 
     /**

@@ -7,6 +7,7 @@ use App\Models\Movableasset;
 use App\Models\Pledgeholder;
 use App\Models\Realestateasset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PledgeController extends Controller
 {

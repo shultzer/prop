@@ -30,15 +30,9 @@ class UserController extends Controller
 
     public function search ( Request $request ) {
         $inventory_number = $request->inventory_number;
-        $pledgeholders = Pledgeholder::with([
-            'realestateassets' => function( $query) use ( $inventory_number )
-            {
-                $query->where('inventory_number', $inventory_number)->get();
-            },
-        ])->get();
-        $assets_under_pledge = Realestateasset::has('pledgeholder')->with('pledgeholder')->where('inventory_number', $inventory_number)->get();
 
-        //dd($assets_under_pledge->pluck('name','inventory_number'));
+        $assets_under_pledge = Realestateasset::has('pledgeholder')->with('pledgeholder')->where('inventory_number', $inventory_number)->get();
+        $request->flash();
         return view('user.searchresult', compact('assets_under_pledge'));
     }
 }

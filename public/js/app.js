@@ -2039,6 +2039,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/assets').then(function (response) {
         _this2.realestateassets = response.data;
+        console.log(response.data);
       })["catch"](function (error) {
         console.log(error.response);
       });
