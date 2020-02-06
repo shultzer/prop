@@ -15,6 +15,8 @@ class CreateMovableassetsTable extends Migration
     {
         Schema::create('movableassets', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('inventory_number');
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@ class CreateRealEstateAssetsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedBigInteger('pledgeholder_id');
+            $table->foreign('pledgeholder_id')->references('id')->on('pledgeholders');
             $table->string('name');
             $table->string('inventory_number')->unique();
             $table->string('raion');
