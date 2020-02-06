@@ -39,7 +39,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        //$this->middleware('guest');
     }
 
     /**
@@ -61,13 +61,13 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        if (Auth::user()->role != 'admin'){
-            return redirect('/')->with('message', 'нет прав');
-        }
+        /*if (Auth::user()->role->name != 'admin'){
+            return redirect()->route('main')->with('message', 'нет прав');
+        }*/
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
