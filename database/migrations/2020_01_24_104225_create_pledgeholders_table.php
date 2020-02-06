@@ -15,12 +15,12 @@ class CreatePledgeHoldersTable extends Migration
     {
         Schema::create('pledgeholders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('realestateasset_id');
-            $table->foreign('realestateasset_id')->references('id')->on('realestateassets');
             $table->string('bank_name');
             $table->string('start_period');
             $table->string('end_period');
             $table->string('contract');
+            $table->string('credit_pdf')->nullable();
+            $table->string('zalog_pdf')->nullable();
             $table->timestamps();
         });
     }

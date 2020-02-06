@@ -1953,9 +1953,113 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Propertyselect",
-  props: ['realestateassets']
+  created: function created() {
+    this.getassets(), this.getcompanies();
+  },
+  data: function data() {
+    return {
+      realestateassets: {},
+      all_companies: {},
+      name: '',
+      number: '',
+      company: '',
+      raion: '',
+      oblast: '',
+      address: ''
+    };
+  },
+  methods: {
+    getcompanies: function getcompanies() {
+      var _this = this;
+
+      axios.get('/companies').then(function (response) {
+        _this.all_companies = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    getassets: function getassets() {
+      var _this2 = this;
+
+      axios.get('/assets').then(function (response) {
+        _this2.realestateassets = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    sendform: function sendform() {
+      var _this3 = this;
+
+      axios.post('/assets', {
+        name: this.name,
+        inventory_number: this.number,
+        company: this.company,
+        raion: this.raion,
+        oblast: this.oblast,
+        address: this.address
+      }).then(function (response) {
+        _this3.getassets(), $('#addModal').modal('hide'), console.log(response);
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37385,21 +37489,352 @@ var render = function() {
     _c("div", { staticClass: "col-md-6" }, [
       _c(
         "select",
-        { staticClass: "form-control", attrs: { multiple: "" } },
+        {
+          staticClass: "form-control",
+          attrs: { name: "assets[]", multiple: "" }
+        },
         _vm._l(_vm.realestateassets, function(realestateasset) {
-          return _c("option", [
+          return _c("option", { domProps: { value: realestateasset.id } }, [
             _vm._v(
-              "\n                " +
-                _vm._s(realestateasset.name, realestateasset.inventory_number)
+              _vm._s(realestateasset.name) +
+                ", " +
+                _vm._s(realestateasset.inventory_number)
             )
           ])
         }),
         0
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-outline-info",
+        attrs: {
+          "data-toggle": "modal",
+          "data-target": "#addModal",
+          type: "button"
+        }
+      },
+      [_vm._v("Добавить")]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("form", [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "Inputname" } }, [
+                      _vm._v("Наименование имущества")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.name,
+                          expression: "name"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: {
+                        id: "Inputname",
+                        type: "text",
+                        placeholder: "Наименование имущества"
+                      },
+                      domProps: { value: _vm.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.name = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "form-text text-muted",
+                        attrs: { id: "nameHelp" }
+                      },
+                      [_vm._v("Наименование вводить из выписки из ЕГРНИ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "Inputnumber" } }, [
+                      _vm._v("Инвентарный номер по ЕГРНИ")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.number,
+                          expression: "number"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { id: "Inputnumber", type: "text" },
+                      domProps: { value: _vm.number },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.number = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "form-text text-muted",
+                        attrs: { id: "numberHelp" }
+                      },
+                      [_vm._v("Цифры и латинские буквы форма 500/D-12345")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "Inputoblast" } }, [
+                      _vm._v("Область")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.oblast,
+                          expression: "oblast"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { id: "Inputoblast", type: "text" },
+                      domProps: { value: _vm.oblast },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.oblast = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "form-text text-muted",
+                        attrs: { id: "oblastHelp" }
+                      },
+                      [_vm._v("Область")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "Inputraion" } }, [
+                      _vm._v("Район")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.raion,
+                          expression: "raion"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { id: "Inputraion", type: "text" },
+                      domProps: { value: _vm.raion },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.raion = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "form-text text-muted",
+                        attrs: { id: "raionHelp" }
+                      },
+                      [_vm._v("район")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: "Inputaddress" } }, [
+                      _vm._v("Адрес")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.address,
+                          expression: "address"
+                        }
+                      ],
+                      staticClass: "form-control form-control-sm",
+                      attrs: { id: "Inputaddress", type: "text" },
+                      domProps: { value: _vm.address },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.address = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "small",
+                      {
+                        staticClass: "form-text text-muted",
+                        attrs: { id: "addressHelp" }
+                      },
+                      [_vm._v("Город, улица, номер строения из выписки")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c(
+                      "label",
+                      { attrs: { for: "exampleFormControlSelect1" } },
+                      [_vm._v("Балансодержатель")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.company,
+                            expression: "company"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "exampleFormControlSelect1" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.company = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          }
+                        }
+                      },
+                      _vm._l(_vm.all_companies, function(comp) {
+                        return _c("option", { domProps: { value: comp.id } }, [
+                          _vm._v(_vm._s(comp.name))
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Закрыть")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.sendform()
+                      }
+                    }
+                  },
+                  [_vm._v("Сохранить")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Добавление имущества")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

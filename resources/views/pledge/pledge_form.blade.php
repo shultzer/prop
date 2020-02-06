@@ -8,9 +8,9 @@
                     <div class="card-header">Новый залог</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="/pledgestore">
                             @csrf
-                            <Propertyselect realestateassets="{{$realestateassets}}"></Propertyselect>
+                            <Propertyselect></Propertyselect>
 
                             <div class="form-group row">
                                 <label for="bank_name" class="col-md-4 col-form-label text-md-right">Наименование
@@ -30,13 +30,13 @@
                             <div class="form-group row">
                                 <label for="date-input-start" class="col-md-4 col-form-label text-md-right">Начало залога</label>
                                 <div class="col-md-6">
-                                    <input class="form-control"name="date_start" type="date" value="" id="date-input-start">
+                                    <input class="form-control"name="start_period" type="date" value="" id="date-input-start">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="date-input-end" class="col-md-4 col-form-label text-md-right">Окончание залога</label>
                                 <div class="col-md-6">
-                                    <input class="form-control" name="date_end" type="date" value="" id="date-input-end">
+                                    <input class="form-control" name="end_period" type="date" value="" id="date-input-end">
                                 </div>
                             </div>
                             {{--<div class="form-group row">

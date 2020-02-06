@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/jquery-mask-plugin/src/jquery.mask.js') }}"></script>
+    {{--<script src="{{ asset('js/jquery-mask-plugin/src/jquery.mask.js') }}"></script>--}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -80,11 +80,11 @@
 </div>
 @yield('scripts')
 <script>
-    window.addEventListener('load', function() {
+    /*window.addEventListener('load', function() {
         $(document).ready(function () {
             $('#invnumber').mask('000/A-00000')
         })
-    });
+    });*/
 </script>
 </body>
 </html>

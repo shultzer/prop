@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Realestateasset extends Model
 {
+    protected $fillable = [
+        'name',
+        'inventory_number',
+        'oblast',
+        'raion',
+        'oblast',
+        'address',
+        'company_id'
+    ];
 
     public function movableassets (  ) {
         return $this->hasMany('App\Models\Movableasset');
